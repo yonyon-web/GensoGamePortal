@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ゲームを登録する | 元素騎士ゲームポータル</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #0b0b18;
+      color: #e0e0f0;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+      border-bottom: 1px solid #2a2a4a;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.4rem; color: #c080ff; }
+    header a { color: #6060a0; text-decoration: none; font-size: 0.85rem; margin-top: 8px; display: block; }
+    header a:hover { color: #a0a0e0; }
+    main {
+      max-width: 680px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2 { font-size: 1.1rem; color: #a080e0; margin: 32px 0 12px; }
+    p  { color: #8080a0; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px; }
+    code {
+      background: #1a1a30;
+      border: 1px solid #2a2a4a;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.85rem;
+      color: #c0a0ff;
+    }
+    pre {
+      background: #111124;
+      border: 1px solid #2a2a4a;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #c0d0e0;
+      margin: 12px 0 20px;
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: #4020a0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body { flex: 1; }
+    .step-body strong { color: #d0c0ff; display: block; margin-bottom: 4px; }
+    .note {
+      background: #1a1428;
+      border: 1px solid #3a2a60;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #a090c0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎮 ゲームをポータルに登録する</h1>
+    <a href="./index.html">← ポータルに戻る</a>
+  </header>
+  <main>
+    <p>
+      元素騎士ミニゲーム開発キットで作ったゲームをポータルに掲載できます。<br>
+      登録は GitHub の Pull Request で行います。
+    </p>
+
+    <h2>前提条件</h2>
+    <p>
+      ゲームが GitHub Pages で公開済みであること。<br>
+      まだの場合は開発キットの <code>docs/deploy-guide.md</code> を参照してください。
+    </p>
+
+    <h2>登録手順</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>このリポジトリを Fork する</strong>
+        <p>GitHub で「Fork」ボタンを押して自分のアカウントにコピーします。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>games.json にゲーム情報を追記する</strong>
+        <p>配列の末尾に以下の形式で追加してください。</p>
+        <pre>{
+  "id": "YYYYMMDD-yourname",
+  "title": "ゲームのタイトル",
+  "creator": "GitHubユーザー名",
+  "creatorUrl": "https://github.com/あなたのユーザー名",
+  "url": "https://あなたのユーザー名.github.io/リポジトリ名/",
+  "thumbnail": null,
+  "collections": ["equipment_v2"],
+  "tags": ["battle"],
+  "description": "ゲームの説明を1〜2行で",
+  "submittedAt": "2025-04-20"
+}</pre>
+        <p><strong>tags の選択肢</strong>: <code>battle</code> / <code>puzzle</code> / <code>collection</code> / <code>casual</code></p>
+        <p><strong>collections の選択肢</strong>: <code>equipment_v1</code> / <code>equipment_v2</code> / <code>block</code> / <code>item</code></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Pull Request を作成する</strong>
+        <p>Fork したリポジトリから元のリポジトリへ PR を出します。タイトルは <code>Add game: ゲームタイトル</code> の形式にしてください。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <strong>レビュー後、自動デプロイされる</strong>
+        <p>管理者がマージすると GitHub Actions が自動的にポータルを更新します。</p>
+      </div>
+    </div>
+
+    <div class="note">
+      💡 <strong>開発キットを使っている場合</strong><br>
+      Claude Code で <code>/submit-portal</code> と入力すると、AIが自動でこれらの手順を実行してPRを作成します。
+    </div>
+  </main>
+</body>
+</html>

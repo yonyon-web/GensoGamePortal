@@ -1,0 +1,14 @@
+[
+  {
+    "id": "20250420-example",
+    "title": "ステータス対戦デモ",
+    "creator": "genso-kit",
+    "creatorUrl": "https://github.com/genso-kit",
+    "url": "https://genso-kit.github.io/demo-stat-battle/",
+    "thumbnail": null,
+    "collections": ["equipment_v1", "equipment_v2"],
+    "tags": ["battle"],
+    "description": "装備品のステータスで1対1バトルを行うシンプルなゲーム。開発キットのサンプル。",
+    "submittedAt": "2025-04-20"
+  }
+]
